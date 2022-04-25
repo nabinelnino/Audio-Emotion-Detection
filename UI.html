@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Emotion Prediction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2 class="pt-2 col-6 offset-3"> Emotion Predict </h2>
+    <h2 class="pt-2 col-6 offset-3" id="prediction"></h2>
+    <form id="emotion-form" class="pt-2 col-6 offset-3" enctype="multipart/form-data">
+      <fieldset class="form-group">
+        <label>Audio File</label>
+        <input type="file" name="audio">
+      </fieldset>
+      <div class="pt-2 row">
+        <button class="ml-auto btn btn-primary" id="predict-btn" type="submit">Predict</button>
+      </div>
+      <div class="p-4" id='graph'></div>
+      
+    </form>
+  </div>
+
+  <script>
+
+    $("#graph").hide();
+
+    $("#emotion-form").on("submit", async function (e) {
+
+      e.preventDefault();
+      $('#predict-btn').prop('disabled', true)
+
+      var form = $('#emotion-form')[0];
+      var formData = new FormData(form);
+      formData.append('file', $('input[type=file]')[0].files[0]);
+
+      var res = await $.ajax({
+        url: "http://localhost:8000/",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false
+      });
+
+      $('#predict-btn').prop('disabled', false)
+
+      if (!res) {
+        alert("error")
+      }
+
+      $("#graph").css({height: '400px'}).show()
+
+      var data = [
+        {
+          x: Object.keys(res.predictions),
+          y: Object.values(res.predictions).map(x => Math.round(x * 100, 2)),
+          type: 'bar'
+        }
+      ];
+
+      Plotly.newPlot('graph', data);
+
+    })
+
+
+  </script>
+
+</body>
+
+</html>
