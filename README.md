@@ -4,6 +4,7 @@
  <li>It can be implemented in call center to detect the emotions of the caller</li>
 <li>In virtual therapy session, the overall emotion of the patient can be detected even without facial expression.
 </li>
+
 ## Dataset:
 <li>(RAVDESS) https://zenodo.org/record/1188976#.X4sE0tDXKUl</li>
 <li> (TESS) https://tspace.library.utoronto.ca/handle/1807/24487</li>
@@ -25,4 +26,15 @@
 ## File:
 ### Main.py and utils.py file contains all required code for API creation. The final model is called here and it returns JSON file consisting overall probability of each emotion present in audio file.
 ### UI.HTML is User interface where API is called and we can see the plot containing overall emotion from the recording.
-### Final_Model.ipnp is the final model where all required code and implementation of the model is implemented.
+### Final_Model.ipnp is the final model where all required code and implementation of the model is implemented. <br>
+## Final LSTM Model summery
+![alt text](https://github.com/nabinelnino/Audio-Emotion-Detection/blob/main/img/model_summery.PNG)
+
+### Model Accuracy
+![alt text](https://github.com/nabinelnino/Audio-Emotion-Detection/blob/main/img/accuracy.PNG)
+### The UI containing final model looks like this:
+![alt_text](https://github.com/nabinelnino/Audio-Emotion-Detection/blob/main/img/pp.gif)
+
+
+### Please Visit my personal portfolio here(https://nabinelnino.github.io/nabin.bagale/) for getting more information about this project
+
