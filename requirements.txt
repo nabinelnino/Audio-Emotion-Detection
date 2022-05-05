@@ -15,7 +15,7 @@ noisereduce==1.1.0
 json-tricks==3.15.4
 livelossplot==0.5.4
 
-For web UI
-fastapi
-uvicorn
-Swagger for API Testing
+# For web UI
+# fastapi
+# uvicorn
+# Swagger for API Testing
